@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Reset — minimal, readability-focused
+   Reset
    ========================================================================== */
 
 *, *::before, *::after {
@@ -39,20 +39,21 @@ a {
 }
 
 /* ==========================================================================
-   Design tokens
+   Tokens
    ========================================================================== */
 
 :root {
-  --bg-color: #fdfbf7;
-  --text-primary: #5c4d43;
-  --accent-color: #8da399;
-  --accent-hover: #7a8f86;
-  --card-bg: #ffffff;
-  --border-color: #f4f0ea;
-  --border-subtle: #f0e6d3;
-  --tag-bg: #f4f0ea;
-  --border-radius: 20px;
-  --shadow-soft: 0 8px 24px rgba(92, 77, 67, 0.04);
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --border: #e5e5e5;
+  --radius: 8px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* ==========================================================================
@@ -61,139 +62,210 @@ a {
 
 body {
   min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding: 3rem 2rem;
+  }
 }
 
 /* ==========================================================================
    Layout
    ========================================================================== */
 
-.container {
-  max-width: 600px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.page {
+  max-width: 640px;
+  margin: 0 auto;
 }
 
-.main-content {
+.content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .content {
+    margin-top: 3rem;
+    gap: 3rem;
+  }
 }
 
 /* ==========================================================================
-   Components
+   Hero
    ========================================================================== */
 
-header {
-  text-align: center;
-  padding: 1rem 0 2rem 0;
+.hero {
+  padding-bottom: 0.5rem;
 }
 
-h1 {
-  font-size: 2.25rem;
+.hero h1 {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
   font-weight: 700;
-  color: var(--accent-color);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  color: var(--text);
 }
 
-.subtitle {
-  font-size: 1.1rem;
-  opacity: 0.8;
+.hero-role {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
-.section-card {
-  background-color: var(--card-bg);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-soft);
-  border: 2px solid var(--border-color);
-}
-
-h2 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  display: inline-block;
-  border-bottom: 4px solid var(--border-subtle);
-}
-
-.role-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-}
-
-.date-location {
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-.experience-list {
-  list-style: none;
+.hero-focus {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
   margin-top: 0.5rem;
 }
 
-.experience-list li {
-  margin-bottom: 0.75rem;
-  position: relative;
-  padding-left: 1.25rem;
+/* ==========================================================================
+   Blocks (sections)
+   ========================================================================== */
+
+.block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow);
 }
 
-.experience-list li::before {
-  content: "•";
-  color: var(--accent-color);
-  font-weight: bold;
+@media (min-width: 640px) {
+  .block {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+.block-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.block-text {
+  color: var(--text);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.block-contact {
+  text-align: center;
+}
+
+.block-contact .block-text {
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   Job (experience entry)
+   ========================================================================== */
+
+.job-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.job-company {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.job-meta {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.job-role {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.job-bullets {
+  list-style: none;
+}
+
+.job-bullets li {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text);
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.job-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+.job-bullets li::before {
+  content: "";
   position: absolute;
   left: 0;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
-.tags {
+/* ==========================================================================
+   Chips
+   ========================================================================== */
+
+.chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
 }
 
-.tag {
-  background-color: var(--tag-bg);
-  color: var(--text-primary);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+.chip {
+  font-size: 0.8125rem;
   font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
 }
 
-.contact-section {
-  text-align: center;
-}
+/* ==========================================================================
+   Button
+   ========================================================================== */
 
-/* Button (link styled as button) */
-a.button {
+.btn {
   display: inline-block;
-  background-color: var(--accent-color);
-  color: #ffffff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 30px;
+  font-size: 0.9375rem;
   font-weight: 600;
-  margin-top: 1.5rem;
-  transition: transform 0.1s ease, background-color 0.2s ease;
+  color: #fff;
+  background: var(--accent);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
 }
 
-a.button:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-2px);
+.btn:hover {
+  background: var(--accent-hover);
 }
 
-a.button:focus-visible {
-  outline: 2px solid var(--accent-color);
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
