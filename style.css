@@ -13,14 +13,14 @@ a { color: inherit; text-decoration: none; }
   --bg: #f9f8f6;
   --text: #2b2826;
   --text-muted: #736b63;
-  --font-serif: "Adobe Garamond Pro", Garamond, Georgia, serif;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
 }
 
 body {
   min-height: 100vh;
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
@@ -37,51 +37,56 @@ body {
   margin-top: 2rem; 
 }
 
+/* 5. Hero Module - Sidebar Layout */
 .hero {
-  padding-bottom: 2.5rem;
+  padding-bottom: 3rem;
   border-bottom: 1px solid rgba(43, 40, 38, 0.1);
 }
 
 .hero-profile {
   display: flex;
-  align-items: flex-start;
-  gap: 2rem;
+  flex-direction: row; /* Parallel processing */
+  align-items: flex-start; /* Aligns text top with image top */
+  gap: 3rem; /* Generous breathing room */
 }
 
 .profile-img {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
   border-radius: 20%;
   flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(43, 40, 38, 0.05);
 }
 
 .hero h1 {
   font-size: 2.5rem;
   font-weight: 400;
   color: var(--text);
-  line-height: 1;
+  line-height: 1.1;
+  margin-top: -5px; /* Visual alignment with top of image */
 }
 
 .hero-role {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-style: italic;
   color: var(--text-muted);
   margin-top: 0.5rem;
 }
 
 .hero-focus {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   margin-top: 0.25rem;
 }
 
+/* 6. Body Blocks */
 .block {
   padding: 2.5rem 0;
 }
 
 .block-title {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -91,10 +96,11 @@ body {
 }
 
 .block-text {
-  font-size: 1.15rem;
+  font-size: 1rem;
 }
 
 .contact-links { 
+  font-size: 0.95rem;
   margin-top: 1rem; 
 }
 
@@ -106,7 +112,7 @@ body {
 
 .contact-link-email { 
   font-family: var(--font-mono); 
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .contact-sep {
@@ -114,13 +120,15 @@ body {
   padding: 0 0.5rem;
 }
 
+/* Mobile Fallback: Reverts to vertical stack if the screen is too narrow */
 @media (max-width: 600px) {
   .hero-profile {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    gap: 1.5rem;
   }
-  .page {
-    padding: 0 1rem;
+  .profile-img {
+    width: 120px;
+    height: 120px;
   }
 }
